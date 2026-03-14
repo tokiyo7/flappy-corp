@@ -7,11 +7,7 @@
 <title>Flappy Corp — Earn ARB</title>
 <meta property="og:title" content="Flappy Corp — Earn ARB on Arbitrum"/>
 <meta property="og:description" content="Score 5+ → Spin → Win ARB! Weekly tournament. New user bonus."/>
-<script>
-// Call ready() as SOON as SDK loads
-window.__fcReady = false;
-</script>
-<script src="https://cdn.jsdelivr.net/npm/@farcaster/miniapp-sdk@latest/dist/index.umd.min.js" onload="(function(){try{if(window.sdk&&window.sdk.actions){window.sdk.actions.ready().then(function(){window.__fcReady=true;console.log('FC READY!');window.sdk.context.then(function(c){if(c&&c.user&&c.user.username){localStorage.setItem('fc_fcname',c.user.username);if(!localStorage.getItem('fc_n'))localStorage.setItem('fc_n',c.user.displayName||c.user.username);}}).catch(function(){});}).catch(function(e){console.log('ready err',e);});}else{console.log('SDK loaded but no actions');}}catch(e){console.log('onload err',e);}})()"></script>
+<script src="https://cdn.jsdelivr.net/npm/@farcaster/miniapp-sdk/dist/index.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
 <style>
@@ -656,7 +652,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
    CONFIG — PASTE CONTRACT ADDRESS AFTER DEPLOY
    ══════════════════════════════════════════ */
 /* ══ FARCASTER AUTO USERNAME ══ */
-// FC SDK ready handled via script onload
+
 
 const CFG={
   CONTRACT:'0xD63CCf8996562e402d35f41e59068C711f07108a',
@@ -1585,5 +1581,29 @@ async function claimSpin(){
 window.addEventListener('resize',()=>{if($('game-scr').classList.contains('on')){cityBg=null;rsz();}});
 rsz();
 </script>
+
+<script>
+// Farcaster Mini App - correct SDK init
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(function() {
+    try {
+      // SDK exposes as: miniapp.sdk
+      var sdk = (window.miniapp && window.miniapp.sdk) ? window.miniapp.sdk : null;
+      if (sdk && sdk.actions && typeof sdk.actions.ready === 'function') {
+        sdk.actions.ready().then(function() {
+          console.log('FC ready OK!');
+          sdk.context.then(function(ctx) {
+            if (ctx && ctx.user) {
+              if (ctx.user.username) localStorage.setItem('fc_fcname', ctx.user.username);
+              if (!localStorage.getItem('fc_n') && ctx.user.displayName) localStorage.setItem('fc_n', ctx.user.displayName);
+            }
+          }).catch(function(){});
+        }).catch(function(e){ console.log('ready err:', e); });
+      } else {
+        console.log('miniapp.sdk not found, window.miniapp:', typeof window.miniapp);
+      }
+    } catch(e) { console.log('FC err:', e); }
+  }, 300);
+});
+</script>
 </body>
-</html>
