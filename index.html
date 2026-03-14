@@ -652,30 +652,36 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
    CONFIG — PASTE CONTRACT ADDRESS AFTER DEPLOY
    ══════════════════════════════════════════ */
 /* ══ FARCASTER AUTO USERNAME ══ */
-(async()=>{
-  try{
-    let attempts=0;
-    while(!window.sdk && attempts<20){
-      await new Promise(r=>setTimeout(r,200));
-      attempts++;
-    }
-    if(window.sdk){
-      const ctx=await window.sdk.context;
-      if(ctx?.user?.username){
-        const fcUser=ctx.user.username;
-        localStorage.setItem('fc_fcname',fcUser);
-        if(!localStorage.getItem('fc_n')){
-          localStorage.setItem('fc_n',ctx.user.displayName||fcUser);
-        }
-        console.log('FC user:',fcUser);
+// Farcaster SDK - call ready() as early as possible
+(function initFC(){
+  function tryReady(){
+    try{
+      if(window.sdk && window.sdk.actions && window.sdk.actions.ready){
+        window.sdk.actions.ready().then(function(){
+          console.log('FC ready called!');
+          // Get user context
+          window.sdk.context.then(function(ctx){
+            if(ctx && ctx.user && ctx.user.username){
+              localStorage.setItem('fc_fcname', ctx.user.username);
+              if(!localStorage.getItem('fc_n')){
+                localStorage.setItem('fc_n', ctx.user.displayName || ctx.user.username);
+              }
+            }
+          }).catch(function(){});
+        }).catch(function(e){ console.log('ready err:',e); });
+        return true;
       }
-      await window.sdk.actions.ready();
-      console.log('SDK ready!');
-    }
-  }catch(e){
-    console.log('SDK err:',e);
-    // Try direct ready call
-    try{await window.sdk.actions.ready();}catch(e2){}
+      return false;
+    }catch(e){ return false; }
+  }
+  // Try immediately
+  if(!tryReady()){
+    // Try every 100ms for 3 seconds
+    var tries = 0;
+    var interval = setInterval(function(){
+      tries++;
+      if(tryReady() || tries > 30){ clearInterval(interval); }
+    }, 100);
   }
 })();
 
