@@ -742,6 +742,15 @@ if(pname){checkNewUser();startHR();}
 
 /* ══ WALLET ══ */
 async function connect(){
+  // Farcaster wallet support
+  if(window.miniapp && window.miniapp.sdk && window.miniapp.sdk.wallet){
+    try{
+      const ethProvider = await window.miniapp.sdk.wallet.ethProvider;
+      if(ethProvider){
+        window.ethereum = ethProvider;
+      }
+    }catch(e){ console.log('FC wallet err:',e); }
+  }
   if(!window.ethereum){toast('Use Farcaster wallet or MetaMask!',4000);return;}
   try{
     await window.ethereum.request({method:'eth_requestAccounts'});
