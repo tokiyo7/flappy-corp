@@ -7,10 +7,7 @@
   "frame": {
     "version": "1",
     "name": "Flappy Corp",
-    "iconUrl": "https://sensational-puffpuff-37d983.netlify.app/icon.png",
     "homeUrl": "https://flappy-corp.vercel.app",
-    "splashImageUrl": "https://sensational-puffpuff-37d983.netlify.app/splash.png",
-    "splashBackgroundColor": "#080810",
-    "webhookUrl": ""
+    "splashBackgroundColor": "#080810"
   }
 }
