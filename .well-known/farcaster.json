@@ -7,6 +7,7 @@
   "frame": {
     "version": "1",
     "name": "Flappy Corp",
+    "iconUrl": "https://raw.githubusercontent.com/tokiyo7/flappy-corp/main/icon.png",
     "homeUrl": "https://flappy-corp.vercel.app",
     "splashBackgroundColor": "#080810"
   }
