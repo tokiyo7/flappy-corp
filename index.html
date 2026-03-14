@@ -664,21 +664,29 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 /* ══ FARCASTER AUTO USERNAME ══ */
 (async()=>{
   try{
+    let attempts=0;
+    while(!window.sdk && attempts<20){
+      await new Promise(r=>setTimeout(r,200));
+      attempts++;
+    }
     if(window.sdk){
       const ctx=await window.sdk.context;
       if(ctx?.user?.username){
         const fcUser=ctx.user.username;
         localStorage.setItem('fc_fcname',fcUser);
-        // Name bhi set karo agar pehli baar hai
         if(!localStorage.getItem('fc_n')){
           localStorage.setItem('fc_n',ctx.user.displayName||fcUser);
         }
-        console.log('Farcaster user detected:',fcUser);
+        console.log('FC user:',fcUser);
       }
-      // Ready call karo taaki Farcaster jaane app load ho gaya
       await window.sdk.actions.ready();
+      console.log('SDK ready!');
     }
-  }catch(e){console.log('Not in Farcaster:',e);}
+  }catch(e){
+    console.log('SDK err:',e);
+    // Try direct ready call
+    try{await window.sdk.actions.ready();}catch(e2){}
+  }
 })();
 
 const CFG={
