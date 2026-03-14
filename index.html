@@ -437,12 +437,13 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
   <div class="sec" id="owner-sec" style="display:none;">
     <div class="sech">🔧 Owner Panel</div>
     <div style="background:rgba(245,166,35,.07);border:1px solid rgba(245,166,35,.2);border-radius:12px;padding:14px;">
-      <div style="font-size:11px;color:var(--sub);margin-bottom:10px;">Pool Balance: <b id="o-pool" style="color:var(--gld)">—</b> ARB</div>
-      <div style="font-size:11px;color:var(--sub);margin-bottom:8px;">ARB amount daalo:</div>
-      <input type="number" id="o-amt" placeholder="e.g. 10" min="0.1" step="0.1" style="background:#060912;border:1px solid var(--bdr2);border-radius:8px;color:var(--txt);font-size:14px;font-weight:700;padding:10px 12px;width:100%;margin-bottom:10px;outline:none;">
+      <div style="font-size:11px;color:var(--sub);margin-bottom:4px;">Pool Balance: <b id="o-pool" style="color:var(--gld)">—</b> ARB</div>
+      <div style="font-size:11px;color:var(--sub);margin-bottom:8px;">Your ARB Balance: <b id="o-mybal" style="color:var(--p)">—</b> ARB</div>
+      <input type="number" id="o-amt" placeholder="Amount (e.g. 0.5)" min="0.1" step="0.1" style="background:#060912;border:1px solid var(--bdr2);border-radius:8px;color:var(--txt);font-size:14px;font-weight:700;padding:10px 12px;width:100%;margin-bottom:10px;outline:none;">
+      <button class="btn btn-g" id="o-onestep" style="width:100%;padding:14px;font-size:14px;margin-bottom:6px;">🚀 Approve & Fund Pool</button>
       <div style="display:flex;gap:8px;">
-        <button class="btn btn-g" id="o-approve" style="flex:1;padding:12px;font-size:12px;">✅ Approve ARB</button>
-        <button class="btn btn-p" id="o-fund" style="flex:1;padding:12px;font-size:12px;" disabled>💰 Fund Pool</button>
+        <button class="btn btn-g" id="o-approve" style="flex:1;padding:10px;font-size:11px;">1️⃣ Approve</button>
+        <button class="btn btn-p" id="o-fund" style="flex:1;padding:10px;font-size:11px;" disabled>2️⃣ Fund Pool</button>
       </div>
       <div class="txb" id="o-tx" style="margin-top:8px;"></div>
     </div>
@@ -988,9 +989,44 @@ async function checkOwner(){
   if(!ua||!ct)return;
   if(OWNERS.includes(ua.toLowerCase())){
     $('owner-sec').style.display='block';
-    try{const s=await ct.getPoolStats();const bal=parseFloat(ethers.formatEther(s[0])).toFixed(4);$('o-pool').textContent=bal+' ARB';console.log('Pool:',bal);}catch(e){console.log('Pool err:',e);$('o-pool').textContent='Error';}
+    try{
+    const s=await ct.getPoolStats();
+    const bal=parseFloat(ethers.formatEther(s[0])).toFixed(4);
+    $('o-pool').textContent=bal+' ARB';
+    // Show wallet ARB balance
+    const tkn=new ethers.Contract(ARB_TOKEN,ERC20_ABI,sg);
+    const myBal=await tkn.balanceOf(ua);
+    $('o-mybal').textContent=parseFloat(ethers.formatEther(myBal)).toFixed(4);
+  }catch(e){console.log('Pool err:',e);$('o-pool').textContent='Error';}
   }else{$('owner-sec').style.display='none';}
 }
+
+// One-step: Approve + Fund
+$('o-onestep').onclick=async()=>{
+  const amt=$('o-amt').value;
+  if(!amt||isNaN(amt)||Number(amt)<=0){toast('Enter amount!');return;}
+  const tx=$('o-tx'),btn=$('o-onestep');
+  try{
+    btn.disabled=true;
+    // Step 1: Approve
+    tx.className='txb ld';tx.textContent='⏳ Step 1/2: Approving ARB...';tx.style.display='block';
+    const tkn=new ethers.Contract(ARB_TOKEN,ERC20_ABI,sg);
+    const t1=await tkn.approve(CFG.CONTRACT,ethers.parseEther(amt));
+    await t1.wait();
+    tx.textContent='✅ Approved! Step 2/2: Funding pool...';
+    // Step 2: Fund
+    const t2=await ct.fundRewardPool(ethers.parseEther(amt));
+    await t2.wait();
+    tx.className='txb ok';tx.textContent='🎉 Pool funded! '+amt+' ARB added!';
+    toast('🎉 Pool funded: '+amt+' ARB!',4000);
+    $('o-amt').value='';
+    checkOwner();
+  }catch(e){
+    tx.className='txb er';
+    tx.textContent='❌ '+(e.reason||e.message||e.toString());
+    btn.disabled=false;
+  }
+};
 
 $('o-approve').onclick=async()=>{
   const amt=$('o-amt').value;
@@ -1002,7 +1038,7 @@ $('o-approve').onclick=async()=>{
     const tkn=new ethers.Contract(ARB_TOKEN,ERC20_ABI,sg);
     const t=await tkn.approve(CFG.CONTRACT,ethers.parseEther(amt));
     await t.wait();
-    tx.className='txb ok';tx.textContent='✅ Approved! Ab Fund Pool dabao!';
+    tx.className='txb ok';tx.textContent='✅ Approved! Now click Fund Pool';
     $('o-fund').disabled=false;btn.disabled=false;
   }catch(e){tx.className='txb er';tx.textContent='❌ '+(e.reason||e.message);btn.disabled=false;}
 };
@@ -1016,8 +1052,8 @@ $('o-fund').onclick=async()=>{
     btn.disabled=true;
     const t=await ct.fundRewardPool(ethers.parseEther(amt));
     await t.wait();
-    tx.className='txb ok';tx.textContent='✅ Pool funded successfully! Players ab claim kar sakte hain! 🎉';
-    toast('🎉 Pool funded successfully!',3000);
+    tx.className='txb ok';tx.textContent='✅ Pool funded! '+amt+' ARB added!';
+    toast('🎉 Pool funded!',3000);
     $('o-amt').value='';$('o-fund').disabled=true;
     checkOwner();
   }catch(e){tx.className='txb er';tx.textContent='❌ '+(e.reason||e.message);btn.disabled=false;}
