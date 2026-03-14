@@ -1168,11 +1168,31 @@ async function checkOwner(){
 $('o-approve').onclick=async()=>{
   const amt=$('o-amt').value;if(!amt||Number(amt)<=0){toast('Enter amount!');return;}
   const tx=$('o-tx'),btn=$('o-approve');
-  try{tx.className='txb ld';tx.textContent='⏳ Approve in wallet...';tx.style.display='block';btn.disabled=true;
-    const t=await(new ethers.Contract(ARB_TOKEN,ERC20_ABI,sg)).approve(CFG.CONTRACT,ethers.parseEther(amt));
-    await t.wait();tx.className='txb ok';tx.textContent='✅ Approved! Now click Fund Pool.';
+  try{
+    tx.className='txb ld';tx.textContent='⏳ Checking ARB balance...';tx.style.display='block';btn.disabled=true;
+    const tkn=new ethers.Contract(ARB_TOKEN,ERC20_ABI,sg);
+    const bal=await tkn.balanceOf(ua);
+    const need=ethers.parseEther(amt);
+    if(bal<need){
+      tx.className='txb er';
+      tx.textContent='❌ Not enough ARB! You have '+parseFloat(ethers.formatEther(bal)).toFixed(4)+' ARB but need '+amt+' ARB.';
+      btn.disabled=false;return;
+    }
+    tx.textContent='⏳ Confirm approval in wallet...';
+    const t=await tkn.approve(CFG.CONTRACT,need);
+    await t.wait();
+    tx.className='txb ok';tx.textContent='✅ Approved! Now click Fund Pool.';
     $('o-fund').disabled=false;btn.disabled=false;
-  }catch(e){tx.className='txb er';tx.textContent='❌ '+(e.reason||e.message);btn.disabled=false;}
+  }catch(e){
+    tx.className='txb er';
+    const msg=e?.reason||e?.message||'';
+    if(msg.includes('CALL_EXCEPTION')||msg.includes('estimateGas'))
+      tx.textContent='❌ Not enough ARB in wallet. Buy ARB on Arbitrum One first.';
+    else if(msg.includes('rejected')||msg.includes('denied'))
+      tx.textContent='❌ Transaction cancelled.';
+    else tx.textContent='❌ Error: '+(msg.slice(0,80)||'Unknown');
+    btn.disabled=false;
+  }
 };
 $('o-fund').onclick=async()=>{
   const amt=$('o-amt').value;if(!amt||Number(amt)<=0){toast('Enter amount!');return;}
@@ -1182,7 +1202,14 @@ $('o-fund').onclick=async()=>{
     tx.className='txb ok';tx.textContent='✅ Pool funded! Players can now claim! 🎉';
     toast('🎉 Pool funded!',3000);$('o-amt').value='';$('o-fund').disabled=true;
     checkOwner();loadPool();
-  }catch(e){tx.className='txb er';tx.textContent='❌ '+(e.reason||e.message);btn.disabled=false;}
+  }catch(e){
+    tx.className='txb er';
+    const msg=e?.reason||e?.message||'';
+    if(msg.includes('rejected')||msg.includes('denied'))
+      tx.textContent='❌ Transaction cancelled.';
+    else tx.textContent='❌ Error: '+(msg.slice(0,80)||'Unknown');
+    btn.disabled=false;
+  }
 };
 
 /* ══ SPINS DOTS ══ */
