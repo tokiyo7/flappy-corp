@@ -1,15 +1,15 @@
 {
   "accountAssociation": {
     "header": "eyJmaWQiOjg2NjM0NywidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweDNGZkJEY0VCMUYwMDQ3YzczNUUxMmU2Q2EzZWZlMzBjMmVBRkE0REQifQ",
-    "payload": "eyJkb21haW4iOiJzZW5zYXRpb25hbC1wdWZmcHVmZi0zN2Q5ODMubmV0bGlmeS5hcHAifQ",
-    "signature": "QyNW5vGlRmIwpR+oX+HJLPaNiSxswwDSc1jZncN2VQEkz6mGL5dTbT8lVR0Ji+1fVgbDn6ZGax2ufuE2p+aPcBs="
+    "payload": "eyJkb21haW4iOiJmbGFwcHktY29ycC52ZXJjZWwuYXBwIn0",
+    "signature": "cbhcyzn/q67KVXlfahYFY/TgqQhxXpQSjwTShtLXWptEqeHdtz4m6lPOFg1I2zQDSrQc8yWmj8f2r1uhmCwoXBs="
   },
   "frame": {
     "version": "1",
     "name": "Flappy Corp",
-    "iconUrl": "https://sensational-puffpuff-37d983.netlify.app/icon.png",
-    "homeUrl": "https://sensational-puffpuff-37d983.netlify.app",
-    "splashImageUrl": "https://sensational-puffpuff-37d983.netlify.app/splash.png",
+    "iconUrl": "https://flappy-corp.vercel.app/icon.png",
+    "homeUrl": "https://flappy-corp.vercel.app",
+    "splashImageUrl": "https://flappy-corp.vercel.app/splash.png",
     "splashBackgroundColor": "#080810",
     "webhookUrl": ""
   }
