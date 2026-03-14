@@ -511,7 +511,6 @@ body::before{content:'';position:fixed;inset:0;background:
       <div class="creator">by <span>@tokiyo</span> · Arbitrum One</div>
     </div>
     <div class="navr">
-      <div class="nbtn" id="nav-sound" title="Sound">🔊</div>
       <div class="nbtn" id="nav-prof">👤 Profile</div>
       <div class="nbtn" id="nav-sh">↗ Share</div>
     </div>
@@ -702,273 +701,12 @@ body::before{content:'';position:fixed;inset:0;background:
 
   <div class="bbar">
     <button class="btn btn-p" id="play-btn" disabled>▶ Play</button>
-    <button class="btn btn-s" id="go-lb" title="Leaderboard">🏆</button>
-    <button class="btn btn-s" id="go-stats" title="My Stats">📊</button>
-    <button class="btn btn-s" id="go-about" title="About">ℹ️</button>
+    <button class="btn btn-s" id="go-lb">🏆</button>
   </div>
 </div>
 
-<!-- ══ STATS SCREEN ══ -->
-<div id="stats-scr" class="scr">
-  <div class="nav">
-    <div class="navl">
-      <div class="logo">My <em>Stats</em></div>
-      <div class="creator">Your journey so far</div>
-    </div>
-  </div>
-  <div class="sec" style="width:100%;max-width:460px;padding:0 16px;gap:0;">
-    <!-- Personal bests -->
-    <div class="sech">Personal Bests</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-      <div class="sc" style="grid-column:1/-1;background:linear-gradient(135deg,rgba(245,166,35,.08),var(--s1));border-color:rgba(245,166,35,.25);">
-        <div style="font-size:9px;color:var(--sub);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;">🏆 All-Time Best Score</div>
-        <div class="sv" id="st-pb" style="color:var(--gld);font-size:36px;">0</div>
-      </div>
-      <div class="sc sc-pl"><div class="sv" id="st-tg" style="color:var(--p)">0</div><div class="sl">Total Games</div></div>
-      <div class="sc sc-sp"><div class="sv" id="st-arb" style="color:var(--gld)">0</div><div class="sl">ARB Earned</div></div>
-      <div class="sc"><div class="sv" id="st-sp2" style="color:var(--grn)">0</div><div class="sl">Total Spins</div></div>
-      <div class="sc"><div class="sv" id="st-str" style="color:var(--red)">0</div><div class="sl">Best Streak</div></div>
-    </div>
-
-    <!-- This week -->
-    <div class="sech">This Week</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
-      <div class="sc"><div class="sv" id="st-wg" style="color:var(--p);font-size:18px;">0</div><div class="sl">Games</div></div>
-      <div class="sc"><div class="sv" id="st-ws" style="color:var(--gld);font-size:18px;">0</div><div class="sl">Spins</div></div>
-      <div class="sc"><div class="sv" id="st-wb" style="color:var(--gld);font-size:18px;">0</div><div class="sl">Best Score</div></div>
-    </div>
-
-    <!-- Badges -->
-    <div class="sech">Badges <span id="badge-count" style="color:var(--p);font-size:10px;font-weight:700;"></span></div>
-    <div id="badges-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;"></div>
-
-    <!-- Rank -->
-    <div class="sech">Leaderboard Rank</div>
-    <div style="background:var(--s1);border:1px solid var(--bdr);border-radius:14px;padding:16px;display:flex;align-items:center;gap:14px;">
-      <div style="font-size:36px;" id="st-rank-ico">🎮</div>
-      <div>
-        <div style="font-size:20px;font-weight:900;" id="st-rank">#—</div>
-        <div style="font-size:10px;color:var(--sub);margin-top:2px;">out of <span id="st-total">—</span> players this week</div>
-      </div>
-    </div>
-  </div>
-  <div class="bbar">
-    <button class="btn btn-p" id="stats-play">▶ Play</button>
-    <button class="btn btn-s" id="stats-back">←</button>
-  </div>
-</div>
-
-<!-- ══ ABOUT / INFO SCREEN ══ -->
-<div id="about-scr" class="scr">
-  <div class="nav">
-    <div class="navl">
-      <div class="logo">About <em>Flappy Corp</em></div>
-      <div class="creator">by <span>@tokiyo</span></div>
-    </div>
-  </div>
-  <div class="sec">
-
-    <!-- App intro card -->
-    <div style="background:linear-gradient(145deg,#12102e,#0d0d1f);border:1px solid rgba(124,111,255,.22);border-radius:18px;padding:20px;margin-bottom:4px;position:relative;overflow:hidden;">
-      <div style="position:absolute;top:-30px;right:-20px;width:100px;height:100px;background:radial-gradient(circle,rgba(124,111,255,.2),transparent 65%);pointer-events:none;"></div>
-      <div style="font-size:36px;margin-bottom:10px;">✈️</div>
-      <div style="font-size:20px;font-weight:900;margin-bottom:6px;">Flappy Corp</div>
-      <div style="font-size:12px;color:var(--sub);line-height:1.8;">
-        A play-to-earn mini game built on <b style="color:var(--txt)">Arbitrum One</b>. 
-        Score points, spin the slot machine, and win real ARB tokens — directly to your wallet.
-        Built for the <b style="color:var(--p)">Farcaster</b> community.
-      </div>
-      <div style="display:flex;gap:6px;margin-top:12px;flex-wrap:wrap;">
-        <div class="pill pill-p">⚡ Arbitrum One</div>
-        <div class="pill pill-gr">🎮 Play-to-Earn</div>
-        <div class="pill pill-g">🏆 Weekly Prizes</div>
-      </div>
-    </div>
-
-    <!-- Creator -->
-    <div class="sech">Creator</div>
-    <div style="background:var(--s1);border:1px solid var(--bdr);border-radius:14px;padding:16px;display:flex;align-items:center;gap:14px;cursor:pointer;"
-      onclick="window.open('https://warpcast.com/tokiyo','_blank')">
-      <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--p),#a890ff);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">✈️</div>
-      <div style="flex:1;">
-        <div style="font-size:15px;font-weight:900;">@tokiyo</div>
-        <div style="font-size:10px;color:var(--sub);margin-top:2px;">Farcaster · Builder · Game Creator</div>
-      </div>
-      <div style="font-size:20px;color:var(--sub);">↗</div>
-    </div>
-
-    <!-- How to play -->
-    <div class="sech">How to Play</div>
-    <div style="display:flex;flex-direction:column;gap:8px;">
-      <div style="background:var(--s1);border:1px solid var(--bdr);border-radius:13px;padding:14px 15px;display:flex;gap:12px;align-items:flex-start;">
-        <div style="width:32px;height:32px;border-radius:10px;background:rgba(124,111,255,.15);border:1px solid rgba(124,111,255,.25);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">1</div>
-        <div><div style="font-size:13px;font-weight:800;margin-bottom:3px;">Choose Your Company</div><div style="font-size:11px;color:var(--sub);line-height:1.6;">Pick from 5 companies or unlock your own brand for 0.0013 ETH on Arbitrum One.</div></div>
-      </div>
-      <div style="background:var(--s1);border:1px solid var(--bdr);border-radius:13px;padding:14px 15px;display:flex;gap:12px;align-items:flex-start;">
-        <div style="width:32px;height:32px;border-radius:10px;background:rgba(245,166,35,.15);border:1px solid rgba(245,166,35,.25);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">2</div>
-        <div><div style="font-size:13px;font-weight:800;margin-bottom:3px;">Play the Game</div><div style="font-size:11px;color:var(--sub);line-height:1.6;">Tap or press Space to fly. Avoid pipes. Score 5+ to unlock the slot machine spin.</div></div>
-      </div>
-      <div style="background:var(--s1);border:1px solid var(--bdr);border-radius:13px;padding:14px 15px;display:flex;gap:12px;align-items:flex-start;">
-        <div style="width:32px;height:32px;border-radius:10px;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.25);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">3</div>
-        <div><div style="font-size:13px;font-weight:800;margin-bottom:3px;">Spin &amp; Win ARB</div><div style="font-size:11px;color:var(--sub);line-height:1.6;">Pull the lever on the slot machine. Win 0.001 to 200 ARB — sent directly to your wallet on Arbitrum.</div></div>
-      </div>
-    </div>
-
-    <!-- Events & How to participate -->
-    <div class="sech">Events &amp; How to Participate</div>
-    <div style="display:flex;flex-direction:column;gap:8px;">
-
-      <div style="background:linear-gradient(135deg,rgba(245,166,35,.07),var(--s1));border:1px solid rgba(245,166,35,.22);border-radius:14px;padding:15px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-          <span style="font-size:20px;">🏆</span>
-          <div style="font-size:13px;font-weight:900;">Weekly Tournament</div>
-          <div style="font-size:9px;color:var(--gld);background:rgba(245,166,35,.12);padding:2px 8px;border-radius:8px;font-weight:700;margin-left:auto;">Every Week</div>
-        </div>
-        <div style="font-size:11px;color:var(--sub);line-height:1.8;">
-          <b style="color:var(--txt);">How to qualify:</b> Maintain a 3-day streak AND complete 5 spins per day.<br>
-          <b style="color:var(--txt);">Prize:</b> Top 10 players win Mystery ARB Prize — up to 100 ARB each.<br>
-          <b style="color:var(--txt);">Resets:</b> Every Monday at midnight UTC.<br>
-          <b style="color:var(--txt);">Results:</b> Winners announced on @tokiyo's Farcaster.
-        </div>
-      </div>
-
-      <div style="background:linear-gradient(135deg,rgba(124,111,255,.07),var(--s1));border:1px solid rgba(124,111,255,.2);border-radius:14px;padding:15px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-          <span style="font-size:20px;">⏰</span>
-          <div style="font-size:13px;font-weight:900;">Hourly Free Spin</div>
-          <div style="font-size:9px;color:var(--p);background:rgba(124,111,255,.12);padding:2px 8px;border-radius:8px;font-weight:700;margin-left:auto;">Every Hour</div>
-        </div>
-        <div style="font-size:11px;color:var(--sub);line-height:1.8;">
-          Stay active for 1 hour → get a free spin — no score needed.<br>
-          <b style="color:var(--txt);">No score required.</b> Just open the app and claim!
-        </div>
-      </div>
-
-      <div style="background:linear-gradient(135deg,rgba(34,197,94,.07),var(--s1));border:1px solid rgba(34,197,94,.2);border-radius:14px;padding:15px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-          <span style="font-size:20px;">🔥</span>
-          <div style="font-size:13px;font-weight:900;">Streak Rewards</div>
-          <div style="font-size:9px;color:var(--grn);background:rgba(34,197,94,.12);padding:2px 8px;border-radius:8px;font-weight:700;margin-left:auto;">Daily</div>
-        </div>
-        <div style="font-size:11px;color:var(--sub);line-height:1.8;">
-          Play 5 spins every day to maintain your streak.<br>
-          <b style="color:var(--txt);">10+ day streak = 2× all rewards!</b><br>
-          Streak resets if you miss a day.
-        </div>
-      </div>
-
-      <div style="background:linear-gradient(135deg,rgba(239,68,68,.07),var(--s1));border:1px solid rgba(239,68,68,.2);border-radius:14px;padding:15px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-          <span style="font-size:20px;">🎯</span>
-          <div style="font-size:13px;font-weight:900;">Daily Milestones</div>
-          <div style="font-size:9px;color:var(--red);background:rgba(239,68,68,.12);padding:2px 8px;border-radius:8px;font-weight:700;margin-left:auto;">Daily Reset</div>
-        </div>
-        <div style="font-size:11px;color:var(--sub);line-height:1.8;">
-          <b style="color:var(--txt);">Score 50</b> in one session → Claim <b style="color:var(--gld);">0.5 ARB</b> instantly.<br>
-          <b style="color:var(--txt);">Score 100</b> in one session → Claim <b style="color:var(--gld);">1 ARB</b> instantly.<br>
-          Resets every day. Max 1 claim per milestone per day.
-        </div>
-      </div>
-
-      <div style="background:linear-gradient(135deg,rgba(96,165,250,.07),var(--s1));border:1px solid rgba(96,165,250,.2);border-radius:14px;padding:15px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-          <span style="font-size:20px;">📢</span>
-          <div style="font-size:13px;font-weight:900;">Share &amp; Earn</div>
-          <div style="font-size:9px;color:#60a5fa;background:rgba(96,165,250,.12);padding:2px 8px;border-radius:8px;font-weight:700;margin-left:auto;">Daily</div>
-        </div>
-        <div style="font-size:11px;color:var(--sub);line-height:1.8;">
-          Share Flappy Corp on Farcaster once per day → get a <b style="color:var(--txt);">free spin</b>!<br>
-          Goes to your Warpcast composer. Share it → spin is unlocked.
-        </div>
-      </div>
-    </div>
-
-    <!-- Reward breakdown -->
-    <div class="sech">Spin Rewards Breakdown</div>
-    <div style="background:var(--s1);border:1px solid var(--bdr);border-radius:14px;overflow:hidden;">
-      <div style="padding:12px 15px;border-bottom:1px solid var(--bdr);display:flex;justify-content:space-between;align-items:center;">
-        <div style="font-size:11px;font-weight:700;color:var(--sub);">REWARD</div>
-        <div style="font-size:11px;font-weight:700;color:var(--sub);">CHANCE</div>
-      </div>
-      <div style="padding:10px 15px;border-bottom:1px solid rgba(255,255,255,.04);display:flex;justify-content:space-between;">
-        <div style="font-size:12px;color:#86efac;font-weight:700;">0.001 – 0.099 ARB</div>
-        <div style="font-size:11px;color:var(--sub);">Very Common</div>
-      </div>
-      <div style="padding:10px 15px;border-bottom:1px solid rgba(255,255,255,.04);display:flex;justify-content:space-between;">
-        <div style="font-size:12px;color:#fcd34d;font-weight:700;">0.1 – 0.5 ARB</div>
-        <div style="font-size:11px;color:var(--sub);">Uncommon</div>
-      </div>
-      <div style="padding:10px 15px;border-bottom:1px solid rgba(255,255,255,.04);display:flex;justify-content:space-between;">
-        <div style="font-size:12px;color:#c084fc;font-weight:700;">1 – 5 ARB</div>
-        <div style="font-size:11px;color:var(--sub);">Rare</div>
-      </div>
-      <div style="padding:10px 15px;border-bottom:1px solid rgba(255,255,255,.04);display:flex;justify-content:space-between;">
-        <div style="font-size:12px;color:#f5a623;font-weight:700;">10 – 50 ARB</div>
-        <div style="font-size:11px;color:var(--sub);">Very Rare</div>
-      </div>
-      <div style="padding:10px 15px;display:flex;justify-content:space-between;">
-        <div style="font-size:12px;color:#f5a623;font-weight:900;">200 ARB 🔥</div>
-        <div style="font-size:11px;color:var(--red);font-weight:700;">Legendary</div>
-      </div>
-    </div>
-
-    <!-- Contract -->
-    <div class="sech">Smart Contract</div>
-    <div style="background:var(--s1);border:1px solid var(--bdr);border-radius:14px;padding:15px;">
-      <div style="font-size:10px;color:var(--sub);margin-bottom:6px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Contract Address · Arbitrum One</div>
-      <div style="font-size:11px;font-weight:700;color:var(--p);word-break:break-all;line-height:1.6;margin-bottom:10px;">0xD63CCf8996562e402d35f41e59068C711f07108a</div>
-      <button onclick="window.open('https://arbiscan.io/address/0xD63CCf8996562e402d35f41e59068C711f07108a','_blank')"
-        style="width:100%;padding:11px;background:rgba(124,111,255,.1);border:1px solid rgba(124,111,255,.25);border-radius:10px;color:var(--p);font-size:12px;font-weight:700;cursor:pointer;">
-        🔍 View on Arbiscan ↗
-      </button>
-    </div>
-
-    <!-- Social -->
-    <div class="sech">Community</div>
-    <div style="display:flex;gap:8px;padding-bottom:4px;">
-      <button onclick="window.open('https://warpcast.com/tokiyo','_blank')"
-        style="flex:1;padding:13px;background:rgba(124,111,255,.1);border:1px solid rgba(124,111,255,.25);border-radius:12px;color:var(--p);font-size:12px;font-weight:800;cursor:pointer;">
-        🟣 Farcaster
-      </button>
-      <button onclick="window.open('https://sensational-puffpuff-37d983.netlify.app','_blank')"
-        style="flex:1;padding:13px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:12px;color:var(--grn);font-size:12px;font-weight:800;cursor:pointer;">
-        🌐 Web App
-      </button>
-    </div>
-
-    <div style="text-align:center;color:var(--sub);font-size:10px;padding:16px 0 4px;line-height:1.8;">
-      Built with ❤️ by @tokiyo<br>
-      Powered by Arbitrum One · Farcaster Mini Apps
-    </div>
-  </div>
-  <div class="bbar">
-    <button class="btn btn-p" id="about-play">▶ Play Now</button>
-    <button class="btn btn-s" id="about-back">←</button>
-  </div>
-</div>
-
-<!-- ══ NOTIFICATION POPUP ══ -->
-<div class="bsov" id="notif-pop">
-  <div class="bsheet">
-    <div class="bsh"></div>
-    <div class="bsico" id="notif-ico">🔔</div>
-    <div class="bstitle" id="notif-title">Notification</div>
-    <div class="bssub" id="notif-msg">—</div>
-    <button class="btn btn-p" id="notif-ok" style="width:100%;padding:14px;">Got it!</button>
-  </div>
-</div>
-
-<!-- ══ BADGE DETAIL POPUP ══ -->
-<div class="bsov" id="badge-pop">
-  <div class="bsheet">
-    <div class="bsh"></div>
-    <div class="bsico" id="bdg-ico">🏅</div>
-    <div class="bstitle" id="bdg-title">Badge</div>
-    <div class="bssub" id="bdg-desc">—</div>
-    <div id="bdg-status" style="font-size:12px;font-weight:700;padding:10px 18px;border-radius:10px;text-align:center;"></div>
-    <button class="btn btn-ghost" id="badge-close" style="width:100%;padding:13px;">Close</button>
-  </div>
-</div>
+<!-- ══ GAME SCREEN ══ -->
+<div id="game-scr" class="scr">
   <canvas id="gc"></canvas>
   <div class="ghud">
     <span class="gscore" id="gsc">0</span>
@@ -1289,7 +1027,6 @@ async function loadPlayer(){
     $('s-sp').textContent=spn;
     $('sl-left').textContent=spn;
     setStreak(Number(streak));setTasks(Number(hs),c50,c100);
-    trackStreak(Number(streak));
     if(isNew&&!localStorage.getItem('fc_welcomed_spin')){
       localStorage.setItem('fc_welcomed_spin','1');
       setTimeout(()=>$('nu-pop').classList.add('on'),1200);
@@ -1625,21 +1362,11 @@ function buildGrid(){
       if(co.locked){if(co.isSlot)$('mu').classList.add('on');return;}
       document.querySelectorAll('.cc').forEach(x=>x.classList.remove('sel'));
       d.classList.add('sel');selId=co.id;$('play-btn').disabled=false;
-      playSound('tap');
     };
     w.appendChild(d);
   });
 }
-buildGrid();
-// Auto-select first company so Play button is always enabled
-if(!selId){
-  selId=COS.find(c=>!c.locked&&!c.isSlot)?.id||'mc';
-  document.querySelectorAll('.cc').forEach(d=>{
-    if(d.querySelector('.ccname')?.textContent===getCo(selId).name)d.classList.add('sel');
-  });
-  $('play-btn').disabled=false;
-}
-checkDailySpin();checkShareSpin();updateSpinDots();checkWeeklyReset();
+buildGrid();checkDailySpin();checkShareSpin();updateSpinDots();checkWeeklyReset();
 
 /* ══════════════════════════════
    GAME ENGINE — SMOOTH PHYSICS
@@ -1672,8 +1399,6 @@ function startGame(){
 function stopGame(){cancelAnimationFrame(aid);}
 function die(){
   gs='dead';lastScore=score;saveSc(score);
-  playSound('die');
-  trackGame();checkAndAwardBadges();
   $('gov').classList.remove('off');
   const ICO=['😵','👍','🎉','⚡','🔥'];
   const TTL=['Game Over','Not Bad!','Great Job!','Amazing!','🔥 Legendary!'];
@@ -1687,8 +1412,8 @@ function die(){
   $('gbtns').style.display='flex';$('ghint').style.display='none';
 }
 function flap(){
-  if(gs==='waiting'){gs='playing';$('gov').classList.add('off');bird.vy=FLAP_VEL;playSound('flap');}
-  else if(gs==='playing'){bird.vy=FLAP_VEL;playSound('flap');}
+  if(gs==='waiting'){gs='playing';$('gov').classList.add('off');bird.vy=FLAP_VEL;}
+  else if(gs==='playing'){bird.vy=FLAP_VEL;}
   else if(gs==='dead'){if(lastScore>=5&&!spinDoneThisRound){toast('🎰 Spin first!',2000);return;}startGame();}
 }
 document.addEventListener('keydown',e=>{if(e.code==='Space'||e.code==='ArrowUp'){e.preventDefault();flap();}});
@@ -1716,7 +1441,6 @@ function update(){
     p.x-=spd;
     if(!p.scored&&p.x+PIPE_W<bird.x){
       p.scored=true;score++;$('gsc').textContent=score;
-      playSound('score');
       if(score===5)$('gtip').style.display='none';
       $('gt50v').textContent=score+'/50';$('gt100v').textContent=score+'/100';
       if(score>=50){$('gt50').className='gt done';if(pendMs<50)pendMs=50;}else if(score>=40)$('gt50').className='gt near';
@@ -1854,7 +1578,7 @@ async function doSpin(){
   await Promise.all([animReel('ri0',RESULT_ROW,1100),animReel('ri1',RESULT_ROW,1400),animReel('ri2',RESULT_ROW,1700)]);
   const fmt=arbVal<.01?arbVal.toFixed(5):arbVal<1?arbVal.toFixed(3):arbVal.toFixed(2);
   $('sl-res').textContent=`🎰 YOU WIN: ${fmt} ARB!`;$('sl-res').className='slres win';
-  slDone=true;slRunning=false;addSpinToday();trackSpin();playSound('spin');
+  slDone=true;slRunning=false;addSpinToday();
   if(ct&&ua&&cn){
     $('claim-spin').style.display='block';$('claim-spin').textContent=`💰 CLAIM ${fmt} ARB!`;
   }else{
@@ -1882,7 +1606,6 @@ async function claimSpin(){
     const fmt=parseFloat(ethers.formatEther(sAmt)).toFixed(5);
     tx.className='txb ok';tx.textContent=`✅ ${fmt} ARB sent to your wallet!`;
     saveSc(lastScore,fmt);toast(`💰 ${fmt} ARB earned!`,4000);
-    trackArb(fmt);playSound('claim');checkAndAwardBadges();
     btn.style.display='none';$('sl-res').textContent=`🏆 ${fmt} ARB CLAIMED!`;
     loadPool();loadPlayer();
   }catch(e){
@@ -1895,229 +1618,6 @@ async function claimSpin(){
     if(window._freeSpinMode){localStorage.removeItem('fc_hs');checkDailySpin();toast('⏰ Free spin restored!',3000);}
   }
 }
-
-
-/* ══════════════════════════════════════
-   SOUND ENGINE — Web Audio API
-   No external files needed!
-══════════════════════════════════════ */
-let audioCtx=null,soundOn=true;
-function getAudio(){if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();return audioCtx;}
-function playSound(type){
-  if(!soundOn)return;
-  try{
-    const a=getAudio();const o=a.createOscillator();const g=a.createGain();
-    o.connect(g);g.connect(a.destination);
-    const t=a.currentTime;
-    if(type==='flap'){
-      o.type='sine';o.frequency.setValueAtTime(520,t);o.frequency.exponentialRampToValueAtTime(380,t+.08);
-      g.gain.setValueAtTime(.18,t);g.gain.exponentialRampToValueAtTime(.001,t+.1);
-      o.start(t);o.stop(t+.1);
-    }else if(type==='score'){
-      o.type='triangle';o.frequency.setValueAtTime(660,t);o.frequency.setValueAtTime(880,t+.05);
-      g.gain.setValueAtTime(.15,t);g.gain.exponentialRampToValueAtTime(.001,t+.12);
-      o.start(t);o.stop(t+.12);
-    }else if(type==='die'){
-      o.type='sawtooth';o.frequency.setValueAtTime(280,t);o.frequency.exponentialRampToValueAtTime(80,t+.3);
-      g.gain.setValueAtTime(.2,t);g.gain.exponentialRampToValueAtTime(.001,t+.35);
-      o.start(t);o.stop(t+.35);
-    }else if(type==='win'){
-      // Win fanfare — 3 quick beeps
-      [0,.1,.2].forEach((delay,i)=>{
-        const oo=a.createOscillator();const gg=a.createGain();oo.connect(gg);gg.connect(a.destination);
-        oo.type='sine';const freqs=[660,880,1100];oo.frequency.setValueAtTime(freqs[i],t+delay);
-        gg.gain.setValueAtTime(.2,t+delay);gg.gain.exponentialRampToValueAtTime(.001,t+delay+.1);
-        oo.start(t+delay);oo.stop(t+delay+.12);
-      });
-      return;
-    }else if(type==='spin'){
-      o.type='sine';o.frequency.setValueAtTime(440,t);o.frequency.linearRampToValueAtTime(880,t+.3);
-      g.gain.setValueAtTime(.15,t);g.gain.exponentialRampToValueAtTime(.001,t+.35);
-      o.start(t);o.stop(t+.35);
-    }else if(type==='claim'){
-      [0,.08,.16,.26].forEach((d,i)=>{
-        const oo=a.createOscillator();const gg=a.createGain();oo.connect(gg);gg.connect(a.destination);
-        oo.type='sine';const freqs=[523,659,784,1047];oo.frequency.setValueAtTime(freqs[i],t+d);
-        gg.gain.setValueAtTime(.18,t+d);gg.gain.exponentialRampToValueAtTime(.001,t+d+.12);
-        oo.start(t+d);oo.stop(t+d+.14);
-      });
-      return;
-    }else if(type==='tap'){
-      o.type='sine';o.frequency.setValueAtTime(300,t);
-      g.gain.setValueAtTime(.08,t);g.gain.exponentialRampToValueAtTime(.001,t+.06);
-      o.start(t);o.stop(t+.06);
-    }
-  }catch(e){}
-}
-function toggleSound(){
-  soundOn=!soundOn;
-  localStorage.setItem('fc_sound',soundOn?'1':'0');
-  $('nav-sound').textContent=soundOn?'🔊':'🔇';
-  toast(soundOn?'🔊 Sound ON':'🔇 Sound OFF',1500);
-}
-// Init sound preference
-soundOn=localStorage.getItem('fc_sound')!=='0';
-document.addEventListener('DOMContentLoaded',()=>{
-  $('nav-sound').textContent=soundOn?'🔊':'🔇';
-  $('nav-sound').onclick=toggleSound;
-});
-
-/* ══════════════════════════════════════
-   BADGES SYSTEM
-══════════════════════════════════════ */
-const ALL_BADGES=[
-  {id:'first_game',  ico:'🎮',name:'First Flight',    desc:'Play your first game',        check:()=>parseInt(localStorage.getItem('fc_tg')||'0')>=1},
-  {id:'first_spin',  ico:'🎰',name:'First Spin',      desc:'Spin the slot machine once',   check:()=>parseInt(localStorage.getItem('fc_tsp')||'0')>=1},
-  {id:'score5',      ico:'⭐',name:'Eligible',         desc:'Score 5+ in a game',           check:()=>pb>=5},
-  {id:'score25',     ico:'🌟',name:'Getting Warm',     desc:'Score 25+ in a game',          check:()=>pb>=25},
-  {id:'score50',     ico:'🎯',name:'Sharpshooter',     desc:'Score 50+ in a game',          check:()=>pb>=50},
-  {id:'score100',    ico:'👑',name:'Legendary',        desc:'Score 100+ in a game',         check:()=>pb>=100},
-  {id:'streak3',     ico:'🔥',name:'On Fire',          desc:'Maintain a 3-day streak',      check:()=>parseInt(localStorage.getItem('fc_streak')||'0')>=3},
-  {id:'streak10',    ico:'💎',name:'Diamond Hands',    desc:'Maintain a 10-day streak',     check:()=>parseInt(localStorage.getItem('fc_streak')||'0')>=10},
-  {id:'earner',      ico:'💰',name:'First Earner',     desc:'Claim your first ARB reward',  check:()=>parseFloat(localStorage.getItem('fc_tarb')||'0')>0},
-  {id:'whale',       ico:'🐋',name:'Whale',            desc:'Earn 5+ ARB total',            check:()=>parseFloat(localStorage.getItem('fc_tarb')||'0')>=5},
-  {id:'share',       ico:'📢',name:'Broadcaster',      desc:'Share on Farcaster',           check:()=>!!localStorage.getItem('fc_shs')},
-  {id:'spins5',      ico:'🎲',name:'Spin Addict',      desc:'Complete 5 spins in one day',  check:()=>getSpinsToday()>=5},
-  {id:'tenspins',    ico:'🎡',name:'High Roller',      desc:'Complete 10 total spins',      check:()=>parseInt(localStorage.getItem('fc_tsp')||'0')>=10},
-  {id:'hundredgames',ico:'🏅',name:'Veteran',          desc:'Play 100 total games',         check:()=>parseInt(localStorage.getItem('fc_tg')||'0')>=100},
-];
-
-function checkAndAwardBadges(silent=false){
-  const earned=JSON.parse(localStorage.getItem('fc_badges')||'[]');
-  const newOnes=[];
-  ALL_BADGES.forEach(b=>{
-    if(!earned.includes(b.id)&&b.check()){
-      earned.push(b.id);newOnes.push(b);
-    }
-  });
-  if(newOnes.length>0){
-    localStorage.setItem('fc_badges',JSON.stringify(earned));
-    if(!silent){
-      // Show first new badge
-      setTimeout(()=>{showNotif('🏅 Badge Unlocked!',`You earned: ${newOnes[0].ico} <b>${newOnes[0].name}</b>`,'notif');},800);
-    }
-  }
-  return earned;
-}
-
-function buildBadgesGrid(){
-  const earned=JSON.parse(localStorage.getItem('fc_badges')||'[]');
-  const grid=$('badges-grid');if(!grid)return;
-  grid.innerHTML='';
-  let earnedCount=0;
-  ALL_BADGES.forEach(b=>{
-    const has=earned.includes(b.id)||b.check();
-    if(has)earnedCount++;
-    const d=document.createElement('div');
-    d.style.cssText=`background:${has?'rgba(124,111,255,.1)':'var(--s2)'};border:1px solid ${has?'rgba(124,111,255,.3)':'var(--bdr)'};border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;transition:.15s;`;
-    d.innerHTML=`<div style="font-size:22px;${has?'':'filter:grayscale(1);opacity:.3'}">${b.ico}</div><div style="font-size:8px;font-weight:700;margin-top:4px;color:${has?'var(--txt)':'var(--sub)'};line-height:1.3;">${b.name}</div>`;
-    d.onclick=()=>{
-      $('bdg-ico').textContent=b.ico;
-      $('bdg-title').textContent=b.name;
-      $('bdg-desc').textContent=b.desc;
-      $('bdg-status').textContent=has?'✅ Unlocked!':'🔒 Locked';
-      $('bdg-status').style.cssText=`background:${has?'rgba(34,197,94,.1)':'rgba(255,255,255,.04)'};color:${has?'var(--grn)':'var(--sub)'};`;
-      $('badge-pop').classList.add('on');
-      playSound('tap');
-    };
-    grid.appendChild(d);
-  });
-  const bc=$('badge-count');
-  if(bc)bc.textContent=`${earnedCount}/${ALL_BADGES.length}`;
-}
-
-$('badge-pop') && ($('badge-close').onclick=()=>{$('badge-pop').classList.remove('on');});
-
-/* ══════════════════════════════════════
-   STATS PAGE
-══════════════════════════════════════ */
-function updateStatsPage(){
-  // Load & display stats
-  const tg=parseInt(localStorage.getItem('fc_tg')||'0');
-  const tarb=parseFloat(localStorage.getItem('fc_tarb')||'0').toFixed(3);
-  const tsp=parseInt(localStorage.getItem('fc_tsp')||'0');
-  const bstr=parseInt(localStorage.getItem('fc_bstreak')||'0');
-  $('st-pb').textContent=pb||0;
-  $('st-tg').textContent=tg;
-  $('st-arb').textContent=tarb;
-  $('st-sp2').textContent=tsp;
-  $('st-str').textContent=bstr;
-  // This week stats from lb
-  const wlb=lb;
-  const myGames=wlb.filter(x=>x.name===(pname||'Anonymous'));
-  const wBest=myGames.length?Math.max(...myGames.map(x=>x.score)):0;
-  const wArb=myGames.filter(x=>x.arb).length;
-  $('st-wg').textContent=myGames.length;
-  $('st-ws').textContent=getSpinsToday();
-  $('st-wb').textContent=wBest;
-  // Rank
-  const best=getBestScores([...lb]).sort((a,b)=>b.score-a.score);
-  const myRank=best.findIndex(x=>x.name===(pname||'Anonymous'));
-  const rankIcos=['🥇','🥈','🥉','🎖️','🏅'];
-  if(myRank>=0){
-    $('st-rank').textContent='#'+(myRank+1);
-    $('st-rank-ico').textContent=rankIcos[Math.min(myRank,4)]||'🎮';
-  }else{
-    $('st-rank').textContent='#—';$('st-rank-ico').textContent='🎮';
-  }
-  $('st-total').textContent=best.length||'—';
-  // Badges
-  checkAndAwardBadges(true);
-  buildBadgesGrid();
-}
-
-/* ══════════════════════════════════════
-   NOTIFICATIONS
-══════════════════════════════════════ */
-function showNotif(title,msg,type='notif'){
-  $('notif-title').innerHTML=title;
-  $('notif-msg').innerHTML=msg;
-  $('notif-ico').textContent=type==='pool'?'💧':type==='badge'?'🏅':'🔔';
-  $('notif-pop').classList.add('on');
-  playSound('win');
-}
-$('notif-ok').onclick=()=>$('notif-pop').classList.remove('on');
-
-// Pool funded notification check
-function checkPoolNotif(){
-  if(!ct||!ua||!cn)return;
-  const lastBal=parseFloat(localStorage.getItem('fc_lastbal')||'0');
-  loadPool().then(()=>{
-    // If pool was 0 and now has balance — notify!
-    if(lastBal===0){
-      // Will be handled by loadPool itself
-    }
-  });
-}
-
-/* ══════════════════════════════════════
-   TRACKING — save total stats
-══════════════════════════════════════ */
-function trackGame(){
-  const tg=parseInt(localStorage.getItem('fc_tg')||'0')+1;
-  localStorage.setItem('fc_tg',tg.toString());
-}
-function trackSpin(){
-  const ts=parseInt(localStorage.getItem('fc_tsp')||'0')+1;
-  localStorage.setItem('fc_tsp',ts.toString());
-}
-function trackArb(amt){
-  const ta=parseFloat(localStorage.getItem('fc_tarb')||'0')+parseFloat(amt||0);
-  localStorage.setItem('fc_tarb',ta.toFixed(5));
-}
-function trackStreak(n){
-  const bs=parseInt(localStorage.getItem('fc_bstreak')||'0');
-  if(n>bs)localStorage.setItem('fc_bstreak',n.toString());
-  localStorage.setItem('fc_streak',n.toString());
-}
-
-/* ══ SCREEN NAVIGATION UPDATES ══ */
-$('go-stats').onclick=()=>{updateStatsPage();showScr('stats-scr');playSound('tap');};
-$('go-about').onclick=()=>{showScr('about-scr');playSound('tap');};
-$('stats-back').onclick=()=>showScr('sel-scr');
-$('stats-play').onclick=()=>selId?startGame():showScr('sel-scr');
-$('about-back').onclick=()=>showScr('sel-scr');
-$('about-play').onclick=()=>selId?startGame():showScr('sel-scr');
 
 window.addEventListener('resize',()=>{if($('game-scr').classList.contains('on')){cityBg=null;rsz();}});
 rsz();
