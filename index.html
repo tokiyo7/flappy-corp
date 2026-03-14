@@ -7,7 +7,11 @@
 <title>Flappy Corp — Earn ARB</title>
 <meta property="og:title" content="Flappy Corp — Earn ARB on Arbitrum"/>
 <meta property="og:description" content="Score 5+ → Spin → Win ARB! Weekly tournament. New user bonus."/>
-<script src="https://cdn.jsdelivr.net/npm/@farcaster/miniapp-sdk@latest/dist/index.umd.min.js"></script>
+<script>
+// Call ready() as SOON as SDK loads
+window.__fcReady = false;
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@farcaster/miniapp-sdk@latest/dist/index.umd.min.js" onload="(function(){try{if(window.sdk&&window.sdk.actions){window.sdk.actions.ready().then(function(){window.__fcReady=true;console.log('FC READY!');window.sdk.context.then(function(c){if(c&&c.user&&c.user.username){localStorage.setItem('fc_fcname',c.user.username);if(!localStorage.getItem('fc_n'))localStorage.setItem('fc_n',c.user.displayName||c.user.username);}}).catch(function(){});}).catch(function(e){console.log('ready err',e);});}else{console.log('SDK loaded but no actions');}}catch(e){console.log('onload err',e);}})()"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
 <style>
@@ -652,38 +656,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
    CONFIG — PASTE CONTRACT ADDRESS AFTER DEPLOY
    ══════════════════════════════════════════ */
 /* ══ FARCASTER AUTO USERNAME ══ */
-// Farcaster SDK - call ready() as early as possible
-(function initFC(){
-  function tryReady(){
-    try{
-      if(window.sdk && window.sdk.actions && window.sdk.actions.ready){
-        window.sdk.actions.ready().then(function(){
-          console.log('FC ready called!');
-          // Get user context
-          window.sdk.context.then(function(ctx){
-            if(ctx && ctx.user && ctx.user.username){
-              localStorage.setItem('fc_fcname', ctx.user.username);
-              if(!localStorage.getItem('fc_n')){
-                localStorage.setItem('fc_n', ctx.user.displayName || ctx.user.username);
-              }
-            }
-          }).catch(function(){});
-        }).catch(function(e){ console.log('ready err:',e); });
-        return true;
-      }
-      return false;
-    }catch(e){ return false; }
-  }
-  // Try immediately
-  if(!tryReady()){
-    // Try every 100ms for 3 seconds
-    var tries = 0;
-    var interval = setInterval(function(){
-      tries++;
-      if(tryReady() || tries > 30){ clearInterval(interval); }
-    }, 100);
-  }
-})();
+// FC SDK ready handled via script onload
 
 const CFG={
   CONTRACT:'0xD63CCf8996562e402d35f41e59068C711f07108a',
