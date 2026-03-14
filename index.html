@@ -1011,7 +1011,7 @@ $('o-onestep').onclick=async()=>{
     // Step 1: Approve
     tx.className='txb ld';tx.textContent='⏳ Step 1/2: Approving ARB...';tx.style.display='block';
     const tkn=new ethers.Contract(ARB_TOKEN,ERC20_ABI,sg);
-    const t1=await tkn.approve(CFG.CONTRACT,ethers.parseEther(amt));
+    const t1=await tkn.approve(CFG.CONTRACT,ethers.parseEther(amt),{gasLimit:100000});
     await t1.wait();
     tx.textContent='✅ Approved! Step 2/2: Funding pool...';
     // Step 2: Fund
@@ -1036,7 +1036,7 @@ $('o-approve').onclick=async()=>{
     tx.className='txb ld';tx.textContent='⏳ Approving...';tx.style.display='block';
     btn.disabled=true;
     const tkn=new ethers.Contract(ARB_TOKEN,ERC20_ABI,sg);
-    const t=await tkn.approve(CFG.CONTRACT,ethers.parseEther(amt));
+    const t=await tkn.approve(CFG.CONTRACT,ethers.parseEther(amt),{gasLimit:100000});
     await t.wait();
     tx.className='txb ok';tx.textContent='✅ Approved! Now click Fund Pool';
     $('o-fund').disabled=false;btn.disabled=false;
