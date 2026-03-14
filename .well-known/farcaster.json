@@ -1,0 +1,16 @@
+{
+  "accountAssociation": {
+    "header": "eyJmaWQiOjg2NjM0NywidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweDNGZkJEY0VCMUYwMDQ3YzczNUUxMmU2Q2EzZWZlMzBjMmVBRkE0REQifQ",
+    "payload": "eyJkb21haW4iOiJmbGFwcHktY29ycC52ZXJjZWwuYXBwIn0",
+    "signature": "cbhcyzn/q67KVXlfahYFY/TgqQhxXpQSjwTShtLXWptEqeHdtz4m6lPOFg1I2zQDSrQc8yWmj8f2r1uhmCwoXBs="
+  },
+  "frame": {
+    "version": "1",
+    "name": "Flappy Corp",
+    "iconUrl": "https://flappy-corp.vercel.app/icon.png",
+    "homeUrl": "https://flappy-corp.vercel.app",
+    "splashImageUrl": "https://flappy-corp.vercel.app/splash.png",
+    "splashBackgroundColor": "#080810",
+    "webhookUrl": ""
+  }
+}
