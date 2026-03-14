@@ -1012,15 +1012,16 @@ $('o-onestep').onclick=async()=>{
     tx.className='txb ld';tx.textContent='⏳ Step 1/2: Approving ARB...';tx.style.display='block';
     const tkn=new ethers.Contract(ARB_TOKEN,ERC20_ABI,sg);
     const t1=await tkn.approve(CFG.CONTRACT,ethers.parseEther(amt),{gasLimit:100000});
-    await t1.wait();
-    tx.textContent='✅ Approved! Step 2/2: Funding pool...';
+    // Don't wait - Farcaster wallet doesn't support receipt
+    tx.textContent='✅ Approve sent! Waiting 4 seconds...';
+    await new Promise(r=>setTimeout(r,4000));
+    tx.textContent='⏳ Step 2/2: Funding pool...';
     // Step 2: Fund
-    const t2=await ct.fundRewardPool(ethers.parseEther(amt));
-    await t2.wait();
-    tx.className='txb ok';tx.textContent='🎉 Pool funded! '+amt+' ARB added!';
+    const t2=await ct.fundRewardPool(ethers.parseEther(amt),{gasLimit:200000});
+    tx.className='txb ok';tx.textContent='🎉 Pool fund tx sent! '+amt+' ARB!';
     toast('🎉 Pool funded: '+amt+' ARB!',4000);
     $('o-amt').value='';
-    checkOwner();
+    setTimeout(()=>checkOwner(),5000);
   }catch(e){
     tx.className='txb er';
     tx.textContent='❌ '+(e.reason||e.message||e.toString());
@@ -1037,8 +1038,7 @@ $('o-approve').onclick=async()=>{
     btn.disabled=true;
     const tkn=new ethers.Contract(ARB_TOKEN,ERC20_ABI,sg);
     const t=await tkn.approve(CFG.CONTRACT,ethers.parseEther(amt),{gasLimit:100000});
-    await t.wait();
-    tx.className='txb ok';tx.textContent='✅ Approved! Now click Fund Pool';
+    tx.className='txb ok';tx.textContent='✅ Approve sent! Now click Fund Pool';
     $('o-fund').disabled=false;btn.disabled=false;
   }catch(e){tx.className='txb er';tx.textContent='❌ '+(e.reason||e.message);btn.disabled=false;}
 };
@@ -1050,9 +1050,8 @@ $('o-fund').onclick=async()=>{
   try{
     tx.className='txb ld';tx.textContent='⏳ Funding pool...';tx.style.display='block';
     btn.disabled=true;
-    const t=await ct.fundRewardPool(ethers.parseEther(amt));
-    await t.wait();
-    tx.className='txb ok';tx.textContent='✅ Pool funded! '+amt+' ARB added!';
+    const t=await ct.fundRewardPool(ethers.parseEther(amt),{gasLimit:200000});
+    tx.className='txb ok';tx.textContent='✅ Pool fund tx sent! '+amt+' ARB!';
     toast('🎉 Pool funded!',3000);
     $('o-amt').value='';$('o-fund').disabled=true;
     checkOwner();
